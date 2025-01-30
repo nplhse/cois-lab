@@ -18,11 +18,11 @@ or MariaDB instance.
     $ git clone https://github.com/nplhse/cois-lab.git
     ```
 
-2. Install the project with all dependencies by using **composer**. 
+2. Install the project with all dependencies by using **make**. 
 
     ```
     $ cd ~/webroot/cois-lab
-    $ composer install
+    $ make install
     ``` 
 
 3. You are ready to go, just open the site with your favorite browser!
