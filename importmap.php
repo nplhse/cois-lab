@@ -25,4 +25,15 @@ return [
     '@hotwired/turbo' => [
         'version' => '7.3.0',
     ],
+    'tabler/dist/css/tabler.min.css' => [
+        'version' => '1.0.0-alpha.8',
+        'type' => 'css',
+    ],
+    '@tabler/core/dist/css/tabler.min.css' => [
+        'version' => '1.0.0',
+        'type' => 'css',
+    ],
+    '@tabler/core' => [
+        'version' => '1.0.0',
+    ],
 ];
