@@ -114,6 +114,7 @@
         "symfony/phpunit-bridge": "^7.2",
         "symfony/stopwatch": "7.2.*",
         "symfony/web-profiler-bundle": "7.2.*",
-        "vimeo/psalm": "^6.5"
+        "vimeo/psalm": "^6.5",
+        "vincentlanglet/twig-cs-fixer": "^3.5"
     }
 }
