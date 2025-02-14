@@ -25,6 +25,7 @@
 ###< symfony/asset-mapper ###
 
 .idea
+.vscode
 
 ###> phpstan/phpstan ###
 phpstan.neon
