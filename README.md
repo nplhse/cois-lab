@@ -1,12 +1,13 @@
 # COIS-Lab - A space for collaborative IVENA statistics
 
+[![Testsuite](https://github.com/nplhse/cois-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/nplhse/cois-lab/actions/workflows/tests.yml) [![Linting](https://github.com/nplhse/cois-lab/actions/workflows/lint.yml/badge.svg)](https://github.com/nplhse/cois-lab/actions/workflows/lint.yml)
+
 # Requirements
--   Webserver (Apache, Nginx, LiteSpeed, IIS, etc.) with PHP 8.4 or higher and 
-    MySQL 8.4 as database.
+-   Webserver (Apache, Nginx, LiteSpeed, IIS, etc.) with PHP 8.3 or higher 
 
 # Setup
-This project expects you to have local webserver and a locally installed MySQL
-or MariaDB instance. 
+This project expects you to have local webserver (see requirements) running,
+preferably with the symfony binary in your development environment.
 
 ## Install from GitHub
 1. Launch a **terminal** or **console** and navigate to the webroot folder. 
