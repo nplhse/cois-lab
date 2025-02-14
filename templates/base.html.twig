@@ -18,7 +18,7 @@
         {% block page %}
             <div class="page">
                 {% block header %}
-                    {% embed "_embeds/header.html.twig" %}{% endembed %}
+                    {% embed '_embeds/header.html.twig' %}{% endembed %}
                 {% endblock %}
 
                 <div class="page-wrapper">
@@ -26,7 +26,7 @@
                 </div>
 
                 {% block footer %}
-                    {% include '_includes/footer.html.twig' %}
+                    {{ include('_includes/footer.html.twig') }}
                 {% endblock %}
             </div>
         {% endblock %}
