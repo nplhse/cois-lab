@@ -102,6 +102,7 @@
         "friendsofphp/php-cs-fixer": "^3.68.5",
         "phpstan/extension-installer": "^1.4.3",
         "phpstan/phpstan": "^2.1.5",
+        "phpstan/phpstan-doctrine": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0.4",
         "phpstan/phpstan-symfony": "^2.0.2",
         "phpunit/phpunit": "^11.5.7",
