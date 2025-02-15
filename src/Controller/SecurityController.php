@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\DataTransferObjects\LoginTypeDTO;
+use App\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,11 +17,15 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
+        $loginFormDTO = new LoginTypeDTO();
+
         // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $loginFormDTO->setUsername($authenticationUtils->getLastUsername());
+
+        $form = $this->createForm(LoginType::class, $loginFormDTO);
 
         return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
+            'form' => $form,
             'error' => $error,
         ]);
     }
