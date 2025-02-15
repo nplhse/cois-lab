@@ -25,6 +25,13 @@ help: ## Outputs this help screen
 install: ## Setup the whole project
 	@$(COMPOSER) install --no-interaction
 
+warmup: ## Warmup the dev environment (e.g. after purge)
+	@$(SYMFONY) composer setup-env
+	@$(SYMFONY) composer load-fixtures
+	@$(SYMFONY) composer setup-test-env
+	@$(CONSOLE) asset-map:compile
+	@$(CONSOLE) cache:warmup
+
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 vendor: composer.lock ## Install vendors according to the current composer.lock file
 	@$(COMPOSER) install --prefer-dist --no-dev --no-progress --no-interaction
