@@ -20,12 +20,30 @@
     </fileExtensions>
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
+        <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
+        <MissingConstructor>
+            <errorLevel type="suppress">
+                <directory name="src/Entity"/>
+            </errorLevel>
+        </MissingConstructor>
         <UnusedClass>
             <errorLevel type="suppress">
-                <directory name="src/Controller" />
+                <directory name="src/Controller"/>
+                <directory name="src/DataFixtures"/>
             </errorLevel>
         </UnusedClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="src/Entity"/>
+                <directory name="src/Repository"/>
+            </errorLevel>
+        </PossiblyUnusedMethod>
+        <PossiblyUnusedParam>
+            <errorLevel type="suppress">
+                <directory name="src/Repository"/>
+            </errorLevel>
+        </PossiblyUnusedParam>
     </issueHandlers>
 </psalm>
