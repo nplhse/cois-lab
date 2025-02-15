@@ -3,6 +3,7 @@
 
 # Executables
 COMPOSER      = composer
+DOCKER        = docker
 SYMFONY       = symfony
 
 # Alias
@@ -27,6 +28,21 @@ install: ## Setup the whole project
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 vendor: composer.lock ## Install vendors according to the current composer.lock file
 	@$(COMPOSER) install --prefer-dist --no-dev --no-progress --no-interaction
+
+## —— Docker 🐳 ————————————————————————————————————————————————————————————————
+start: build up ## Build and start the containers
+
+build: ## Builds the Docker images
+	@$(DOCKER) compose build --pull --no-cache
+
+up: ## Start the docker hub in detached mode (no logs)
+	@$(DOCKER) compose up --detach
+
+down: ## Stop the docker hub
+	@$(DOCKER) compose down --remove-orphans
+
+logs: ## Show live logs
+	@$(DOCKER) compose logs --tail=0 --follow
 
 ## —— Coding standards ✨ ——————————————————————————————————————————————————————
 ci: lint-php lint-twig static-analysis ## Run continuous integration pipeline
