@@ -99,6 +99,7 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.0",
         "friendsofphp/php-cs-fixer": "^3.68.5",
         "phpstan/extension-installer": "^1.4.3",
         "phpstan/phpstan": "^2.1.5",
@@ -116,6 +117,7 @@
         "symfony/stopwatch": "7.2.*",
         "symfony/web-profiler-bundle": "7.2.*",
         "vimeo/psalm": "^6.5",
-        "vincentlanglet/twig-cs-fixer": "^3.5"
+        "vincentlanglet/twig-cs-fixer": "^3.5",
+        "weirdan/doctrine-psalm-plugin": "^2.10"
     }
 }
