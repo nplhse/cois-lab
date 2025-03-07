@@ -29,49 +29,24 @@ class SecurityControllerTest extends WebTestCase
         /** @var UserPasswordHasherInterface $passwordHasher */
         $passwordHasher = $container->get('security.user_password_hasher');
 
-        $user = (new User())->setEmail('email@example.com');
+        $user = new User();
+        $user->setEmail('email@example.com');
+        $user->setUsername('testuser');
+        $user->setFullName('Test User');
         $user->setPassword($passwordHasher->hashPassword($user, 'password'));
 
         $em->persist($user);
         $em->flush();
     }
 
-    public function testLogin(): void
+    public function testLoginSucceedsWithValidCredentials(): void
     {
-        // Denied - Can't login with invalid email address.
         $this->client->request('GET', '/login');
         self::assertResponseIsSuccessful();
 
         $this->client->submitForm('Sign in', [
-            '_username' => 'doesNotExist@example.com',
-            '_password' => 'password',
-        ]);
-
-        self::assertResponseRedirects('/login');
-        $this->client->followRedirect();
-
-        // Ensure we do not reveal if the user exists or not.
-        self::assertSelectorTextContains('.alert-danger', 'Invalid credentials.');
-
-        // Denied - Can't login with invalid password.
-        $this->client->request('GET', '/login');
-        self::assertResponseIsSuccessful();
-
-        $this->client->submitForm('Sign in', [
-            '_username' => 'email@example.com',
-            '_password' => 'bad-password',
-        ]);
-
-        self::assertResponseRedirects('/login');
-        $this->client->followRedirect();
-
-        // Ensure we do not reveal the user exists but the password is wrong.
-        self::assertSelectorTextContains('.alert-danger', 'Invalid credentials.');
-
-        // Success - Login with valid credentials is allowed.
-        $this->client->submitForm('Sign in', [
-            '_username' => 'email@example.com',
-            '_password' => 'password',
+            'login[username]' => 'testuser',
+            'login[password]' => 'password',
         ]);
 
         self::assertResponseRedirects('/');
@@ -79,5 +54,62 @@ class SecurityControllerTest extends WebTestCase
 
         self::assertSelectorNotExists('.alert-danger');
         self::assertResponseIsSuccessful();
+    }
+
+    public function testLoginFailsWithInvalidPassword(): void
+    {
+        $this->client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+
+        $this->client->submitForm('Sign in', [
+            'login[username]' => 'testuser',
+            'login[password]' => 'bad-password',
+        ]);
+
+        self::assertResponseRedirects('/login');
+        $this->client->followRedirect();
+
+        // Ensure we do not reveal the user exists but the password is wrong
+        self::assertSelectorTextContains('.alert-danger', 'Invalid credentials.');
+    }
+
+    public function testLoginFailsWithInvalidUsername(): void
+    {
+        $this->client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+
+        $this->client->submitForm('Sign in', [
+            'login[username]' => 'doesNotExist',
+            'login[password]' => 'password',
+        ]);
+
+        self::assertResponseRedirects('/login');
+        $this->client->followRedirect();
+
+        // Ensure we do not reveal if the user exists or not
+        self::assertSelectorTextContains('.alert-danger', 'Invalid credentials.');
+    }
+
+    public function testUsersCanLogoutThemselves(): void
+    {
+        // Login user directly
+        $userRepository = static::getContainer()->get('doctrine')->getRepository(User::class);
+        $testUser = $userRepository->findOneBy(['username' => 'testuser']);
+        $this->client->loginUser($testUser);
+
+        // Verify that we are logged in
+        $this->client->request('GET', '/');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('#user_name', 'Test User');
+        
+        // Perform logout
+        $this->client->request('GET', '/logout');
+        
+        // After logout we should be redirected to the default page
+        self::assertResponseRedirects();
+        $this->client->followRedirect();
+        
+        // Verify that we are on the login page
+        self::assertRouteSame('app_default');
     }
 }
