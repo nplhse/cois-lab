@@ -26,6 +26,10 @@
                 </div>
             </div>
             {{ form_end(form) }}
+
+            <div class="text-center text-muted mt-3">
+                {{ "label.no_account_yet"|trans }} <a href="{{ path("app_register") }}" tabindex="-1">{{ "label.register"|trans }}</a>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -605,6 +605,22 @@
         <source>Please enter a valid week.</source>
         <target>Please enter a valid week.</target>
       </trans-unit>
+      <trans-unit id="6h2NNfX" resname="You should agree to our terms.">
+        <source>You should agree to our terms.</source>
+        <target>__You should agree to our terms.</target>
+      </trans-unit>
+      <trans-unit id="B7yoMOR" resname="Please enter a password">
+        <source>Please enter a password</source>
+        <target>__Please enter a password</target>
+      </trans-unit>
+      <trans-unit id="_OmnKuR" resname="Your password should be at least {{ limit }} characters">
+        <source>Your password should be at least {{ limit }} characters</source>
+        <target>__Your password should be at least {{ limit }} characters</target>
+      </trans-unit>
+      <trans-unit id="SINA.pM" resname="There is already an account with this username">
+        <source>There is already an account with this username</source>
+        <target>__There is already an account with this username</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

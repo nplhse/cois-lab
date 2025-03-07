@@ -21,6 +21,14 @@
         <source>label.signin</source>
         <target>Sign in</target>
       </trans-unit>
+      <trans-unit id="Cn7F.4b" resname="label.register">
+        <source>label.register</source>
+        <target>Sign up</target>
+      </trans-unit>
+      <trans-unit id="C0SBwTU" resname="title.register">
+        <source>title.register</source>
+        <target>Sign up</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
