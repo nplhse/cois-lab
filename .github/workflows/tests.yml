@@ -64,5 +64,9 @@ jobs:
           php bin/console importmap:install
           php bin/console asset-map:compile
 
+      - name: "Prepare Database"
+        run: | 
+          php bin/console doctrine:schema:create || echo "No schema found or schema failed"
+
       - name: Execute tests via PHPUnit
         run: vendor/bin/phpunit
