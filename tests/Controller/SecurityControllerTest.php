@@ -101,14 +101,14 @@ class SecurityControllerTest extends WebTestCase
         $this->client->request('GET', '/');
         self::assertResponseIsSuccessful();
         self::assertSelectorTextContains('#user_name', 'Test User');
-        
+
         // Perform logout
         $this->client->request('GET', '/logout');
-        
+
         // After logout we should be redirected to the default page
         self::assertResponseRedirects();
         $this->client->followRedirect();
-        
+
         // Verify that we are on the login page
         self::assertRouteSame('app_default');
     }
