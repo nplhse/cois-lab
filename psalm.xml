@@ -23,6 +23,11 @@
         <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
+        <ClassMustBeFinal>
+            <errorLevel type="suppress">
+                <directory name="src/Entity"/>
+            </errorLevel>
+        </ClassMustBeFinal>
         <MissingConstructor>
             <errorLevel type="suppress">
                 <directory name="src/Entity"/>
@@ -41,10 +46,10 @@
                 <directory name="src/Repository"/>
             </errorLevel>
         </PossiblyUnusedMethod>
-        <PossiblyUnusedParam>
+        <UnusedParam>
             <errorLevel type="suppress">
                 <directory name="src/Repository"/>
             </errorLevel>
-        </PossiblyUnusedParam>
+        </UnusedParam>
     </issueHandlers>
 </psalm>
