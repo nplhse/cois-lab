@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.login'|trans }} - {{ parent() }}{% endblock %}
+
+{% block page_body %}
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            {{ form_start(form) }}
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">{{ 'title.login'|trans }}</h2>
+
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {{ form_row(form.username) }}
+
+                    {{ form_row(form.password) }}
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary w-100">{{ 'label.signin'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

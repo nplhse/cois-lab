@@ -15,20 +15,22 @@
         {% endblock %}
     </head>
     <body>
-        {% block page %}
-            <div class="page">
-                {% block header %}
-                    {% embed '_embeds/header.html.twig' %}{% endembed %}
-                {% endblock %}
+        {% block body %}
+            {% block page %}
+                <div class="page">
+                    {% block page_header %}
+                        {% embed '_embeds/header.html.twig' %}{% endembed %}
+                    {% endblock %}
 
-                <div class="page-wrapper">
-                    {% block body %}{% endblock %}
+                    <div class="page-wrapper">
+                        {% block page_body %}{% endblock %}
+                    </div>
+
+                    {% block page_footer %}
+                        {{ include('_includes/footer.html.twig') }}
+                    {% endblock %}
                 </div>
-
-                {% block footer %}
-                    {{ include('_includes/footer.html.twig') }}
-                {% endblock %}
-            </div>
+            {% endblock %}
         {% endblock %}
     </body>
 </html>
