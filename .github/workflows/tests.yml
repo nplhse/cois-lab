@@ -19,7 +19,7 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_DB: cois_test
+          POSTGRES_DB: cois
           POSTGRES_USER: cois
           POSTGRES_PASSWORD: password
         options: >-
@@ -65,8 +65,10 @@ jobs:
           php bin/console asset-map:compile
 
       - name: "Prepare Database"
-        run: | 
-          php bin/console doctrine:schema:create || echo "No schema found or schema failed"
+        run: |
+          php bin/console doctrine:database:drop --if-exists --force --env test
+          php bin/console doctrine:database:create --env test
+          php bin/console doctrine:schema:create --env test
 
       - name: Execute tests via PHPUnit
         run: vendor/bin/phpunit
