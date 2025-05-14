@@ -2,7 +2,7 @@
 
 namespace App\DataTransferObjects;
 
-class LoginTypeDTO
+final class LoginTypeDTO
 {
     public function __construct(
         public string $username = '',
